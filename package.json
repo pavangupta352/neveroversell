@@ -2,14 +2,37 @@
   "name": "neveroversell",
   "version": "0.1.0",
   "description": "Holds that cannot oversell: Postgres reservations with TTL, a payment phase, idempotent two-path confirmation, a concurrent-safe sweeper and a drift check. One migration, one thin client, the guarantee enforced by the database.",
-  "type": "module",
+  "author": "Pavan Gupta <pavan.gupta.352@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavangupta352/neveroversell.git"
+  },
+  "homepage": "https://github.com/pavangupta352/neveroversell#readme",
+  "bugs": {
+    "url": "https://github.com/pavangupta352/neveroversell/issues"
+  },
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
-  "bin": { "neveroversell": "dist/cli.js" },
-  "files": ["dist", "sql", "README.md", "LICENSE"],
-  "engines": { "node": ">=20" },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "neveroversell": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "sql",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
@@ -21,7 +44,9 @@
     "sync:sql": "cp sql/*.sql python/neveroversell/sql/",
     "prepublishOnly": "npm run build && npm test"
   },
-  "dependencies": { "pg": "^8.13.0" },
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
   "devDependencies": {
     "@types/node": "^22.7.0",
     "@types/pg": "^8.11.10",
@@ -30,5 +55,17 @@
     "typescript": "^5.6.0",
     "vitest": "^3.0.0"
   },
-  "keywords": ["postgres", "inventory", "reservation", "hold", "booking", "seat", "oversell", "idempotent", "payment", "webhook", "concurrency"]
+  "keywords": [
+    "postgres",
+    "inventory",
+    "reservation",
+    "hold",
+    "booking",
+    "seat",
+    "oversell",
+    "idempotent",
+    "payment",
+    "webhook",
+    "concurrency"
+  ]
 }
