@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nos
+      POSTGRES_PASSWORD: nos
+      POSTGRES_DB: nos
+    ports:
+      - "54329:5432"
+    command: ["postgres", "-c", "max_connections=200", "-c", "log_lock_waits=on", "-c", "deadlock_timeout=200ms"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nos -d nos"]
+      interval: 2s
+      timeout: 3s
+      retries: 30

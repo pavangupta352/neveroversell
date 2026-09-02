@@ -1,0 +1,31 @@
+name: Bug report
+description: Something oversold, revived, double-confirmed, drifted, or errored
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: neveroversell version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: postgres
+    attributes:
+      label: Postgres version and where it runs
+      placeholder: "16.4 on RDS"
+    validations:
+      required: true
+  - type: textarea
+    id: sequence
+    attributes:
+      label: Sequence of calls
+      description: The calls in order, with the statuses you got and the ones you expected. A failing test is ideal.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: check
+    attributes:
+      label: Output of `neveroversell check` for the affected resource
+      render: text

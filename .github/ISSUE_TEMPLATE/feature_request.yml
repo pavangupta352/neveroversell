@@ -1,0 +1,16 @@
+name: Feature request
+description: Something the reservation primitive should do and does not
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The situation
+      description: What are you selling, what breaks today, and which guarantee you need.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: Statuses, functions, or settings you would expect. Say how it interacts with the resource lock.

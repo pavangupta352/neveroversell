@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions
+    url: https://github.com/pavangupta352/neveroversell/discussions
+    about: Ask how to model your inventory or wire your payment provider

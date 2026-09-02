@@ -1,0 +1,22 @@
+{
+  "name": "neveroversell-example-two-paths",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "A checkout where the browser return and the provider webhook both confirm the same hold, and neither can double-fulfil, revive an expired hold, or hide a double payment.",
+  "scripts": {
+    "start": "tsx server.ts",
+    "simulate": "tsx simulate.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "neveroversell": "file:../..",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
