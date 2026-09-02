@@ -3,8 +3,8 @@
 Holds that cannot oversell. A Postgres library for selling a finite thing exactly once when payment is asynchronous: seats, tickets, stock, appointment slots, rental units, cohort places.
 
 [![ci](https://github.com/pavangupta352/neveroversell/actions/workflows/ci.yml/badge.svg)](https://github.com/pavangupta352/neveroversell/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/neveroversell)](https://www.npmjs.com/package/neveroversell)
-[![PyPI](https://img.shields.io/pypi/v/neveroversell)](https://pypi.org/project/neveroversell/)
+[![npm](https://img.shields.io/npm/v/neveroversell?label=npm&color=cb3837)](https://www.npmjs.com/package/neveroversell)
+[![PyPI](https://img.shields.io/pypi/v/neveroversell?label=pypi&color=306998)](https://pypi.org/project/neveroversell/)
 [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
 ![500 buyers race for 10 units: this library holds exactly 10 with zero oversold, the naive implementation sells 72](docs/assets/bench.gif)
