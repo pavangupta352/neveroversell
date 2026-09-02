@@ -6,6 +6,8 @@ Holds that cannot oversell. A Postgres library for selling a finite thing exactl
 [![npm](https://img.shields.io/npm/v/neveroversell)](https://www.npmjs.com/package/neveroversell)
 [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
+![500 buyers race for 10 units: this library holds exactly 10 with zero oversold, the naive implementation sells 72](docs/assets/bench.gif)
+
 ```
 $ neveroversell bench --units 10 --buyers 500
 500 concurrent purchases · 10 units · held: 10 · oversold: 0 · check: no drift · 542 ms
@@ -264,6 +266,8 @@ npm run db:up && npm test
 ## Example: two confirmation paths, one hold
 
 [`examples/two-paths-express`](examples/two-paths-express) is an Express server where the return URL and the provider webhook both confirm the same hold, with the signature checks for Razorpay Checkout, Razorpay webhooks and Stripe webhooks written out in full. Its simulator plays the provider and prints what happens when both paths arrive at once, when the customer pays twice, and when a webhook arrives after the hold expired.
+
+![The simulator: return and webhook racing, three webhook retries, a double payment refunded, a late webhook after expiry refunded, no drift](docs/assets/two-paths.gif)
 
 ## What this is not
 
