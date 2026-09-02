@@ -184,17 +184,17 @@ Pass `--db <url>` or set `DATABASE_URL`. Add `--json` for machine output. `check
 
 ## Throughput
 
-All operations on one resource queue on one row lock. On an Apple M4 laptop with Postgres 16 in Docker:
+All operations on one resource queue on one row lock. On an Apple M4 laptop with Postgres 16 in Docker, one resource sustains between roughly 1,500 and 3,600 holds per second, peaking with a handful of workers, because more workers only queue on the same lock:
 
 ```
 $ neveroversell throughput --seconds 5 --concurrency 8
-17,601 holds in 5.0 s on one resource · 3,519 holds/s
+18,122 holds in 5.0 s on one resource · 3,623 holds/s
 
-$ neveroversell bench --units 50 --buyers 2000
-2000 concurrent purchases · 50 units · held: 50 · oversold: 0 · check: no drift · 814 ms
+$ neveroversell bench --units 100 --buyers 5000
+5000 concurrent purchases · 100 units · held: 100 · oversold: 0 · check: no drift · 1,502 ms
 ```
 
-That is enough for clinics, classes, events and most product drops. A single SKU flash sale with tens of thousands of simultaneous buyers needs the counter sharded across several resources or a queue in front, which this library deliberately does not do. Run the command on your own hardware; the numbers above are not a promise.
+That is enough for clinics, classes, events and most product drops. A single SKU flash sale with tens of thousands of simultaneous buyers needs the counter sharded across several resources or a queue in front, which this library deliberately does not do. Full sweep, methodology and the commands to reproduce it are in [docs/BENCHMARKS.md](docs/BENCHMARKS.md). Run them on your own hardware; the numbers above are not a promise.
 
 ## Modelling
 

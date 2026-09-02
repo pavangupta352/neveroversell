@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>neveroversell social preview</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0f1117; }
+  .card {
+    position: relative; width: 1280px; height: 640px; box-sizing: border-box;
+    background: radial-gradient(1200px 700px at 15% 0%, #1b2030 0%, #0f1117 60%);
+    color: #e8eaf0; font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 72px 84px; overflow: hidden;
+  }
+  .name { font-size: 64px; font-weight: 700; letter-spacing: -1.5px; margin: 0; color: #ffffff; }
+  .tag  { font-size: 30px; font-weight: 400; margin: 14px 0 0; color: #b6bcc9; }
+  .term {
+    margin-top: 54px; background: #161a24; border: 1px solid #262c3a; border-radius: 14px;
+    padding: 26px 30px; font-family: Menlo, "SF Mono", Monaco, monospace; font-size: 21px; line-height: 1.7;
+  }
+  .p { color: #7f8798; }
+  .ok { color: #7ee787; }
+  .bad { color: #ff7b72; }
+  .cmd { color: #e8eaf0; }
+  .foot { position: absolute; left: 84px; right: 84px; bottom: 54px; display: flex; justify-content: space-between;
+          font-size: 22px; color: #8b93a5; }
+  .foot b { color: #c9cfdb; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="name">neveroversell</h1>
+  <p class="tag">Holds that cannot oversell. Postgres reservations for seats, tickets, stock and slots.</p>
+  <div class="term">
+    <div><span class="p">$</span> <span class="cmd">neveroversell bench --units 10 --buyers 500</span></div>
+    <div>500 concurrent purchases · 10 units · <span class="ok">held: 10 · oversold: 0</span> · check: no drift</div>
+    <div style="height:10px"></div>
+    <div><span class="p">$</span> <span class="cmd">neveroversell bench --units 10 --buyers 500 --naive</span></div>
+    <div>500 concurrent purchases · 10 units · <span class="bad">sold: 72 · oversold: 62</span></div>
+  </div>
+  <div class="foot">
+    <span><b>TypeScript</b> and <b>Python</b> over one SQL source</span>
+    <span>No extensions · No Redis · MIT</span>
+  </div>
+</div>
+</body>
+</html>
