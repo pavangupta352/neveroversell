@@ -13,13 +13,23 @@
     "url": "https://github.com/pavangupta352/neveroversell/issues"
   },
   "type": "module",
-  "main": "dist/index.js",
+  "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./sql/*": "./sql/*",
+    "./package.json": "./package.json"
   },
   "bin": {
     "neveroversell": "dist/cli.js"

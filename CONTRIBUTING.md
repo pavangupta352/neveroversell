@@ -45,6 +45,16 @@ npx vitest run -t "two sweepers"
 
 TypeScript strict mode, `npm run typecheck` clean. SQL in lower case, one statement per idea, comments where a decision is not obvious from the code. Plain punctuation in prose.
 
+## Releasing
+
+Both packages carry the same version. To release:
+
+1. Bump `version` in `package.json` and in `python/pyproject.toml`, add the entry to `CHANGELOG.md`.
+2. `npm run sync:sql` if any SQL changed, then `npm test` and `python/.venv/bin/pytest -q`.
+3. Commit, then `git tag vX.Y.Z && git push origin main vX.Y.Z`.
+
+The release workflow re-runs the full suite, checks that the tag, `package.json` and `pyproject.toml` agree, builds the Python distributions, and publishes both packages through trusted publishing, so no registry token is stored anywhere.
+
 ## Reporting a bug
 
 Open an issue with the Postgres version, the sequence of calls, and the statuses you got and expected. A failing test is the best bug report there is.
