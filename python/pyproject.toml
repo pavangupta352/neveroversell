@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "neveroversell"
+version = "0.1.0"
+description = "Holds that cannot oversell. Postgres reservations with a TTL, a payment phase, idempotent two-path confirmation, a concurrent-safe sweeper and a drift check."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Pavan Gupta", email = "pavan.gupta.352@gmail.com" }]
+keywords = ["postgres", "postgresql", "inventory", "reservation", "hold", "booking", "seat", "oversell", "idempotent", "payment", "webhook", "concurrency"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Database",
+  "Topic :: Software Development :: Libraries",
+  "Typing :: Typed",
+]
+dependencies = ["psycopg[binary,pool]>=3.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/pavangupta352/neveroversell"
+Repository = "https://github.com/pavangupta352/neveroversell"
+Issues = "https://github.com/pavangupta352/neveroversell/issues"
+Changelog = "https://github.com/pavangupta352/neveroversell/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["neveroversell"]
+
+[tool.hatch.build.targets.sdist]
+include = ["neveroversell", "tests", "README.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

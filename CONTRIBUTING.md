@@ -23,6 +23,18 @@ npm test
 - A behaviour change needs a test in `test/` that fails before the change and passes after it. The concurrency tests are the specification; keep them green.
 - No floats, no Redis, no queues, no payment SDKs, no UI.
 
+## The SQL lives in one place
+
+`sql/` at the repository root is the source. The Python package bundles a copy under `python/neveroversell/sql/`; run `npm run sync:sql` after editing SQL, and the Python test suite fails if the two ever differ.
+
+## Python
+
+```sh
+cd python
+uv venv && uv pip install -e ".[dev]"     # or: python -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/pytest -q
+```
+
 ## Running one test
 
 ```sh

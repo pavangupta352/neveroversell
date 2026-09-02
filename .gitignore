@@ -5,3 +5,9 @@ coverage/
 .DS_Store
 .env
 BRIEF.md
+python/.venv/
+__pycache__/
+*.egg-info/
+python/dist/
+.pytest_cache/
+launch/

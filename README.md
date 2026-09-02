@@ -34,6 +34,8 @@ npm install neveroversell pg
 
 Postgres 13 or newer. Nothing else: no extensions, no Redis, no queue, no service.
 
+Works with any payment provider, because it never talks to one. You pass in whatever payment id Razorpay, Stripe, PayPal, Paddle, Adyen or Cashfree gave you, and the library only cares that the same id is not used twice.
+
 ## Sixty seconds
 
 ```ts
@@ -198,6 +200,29 @@ That is enough for clinics, classes, events and most product drops. A single SKU
 - **Several things in one basket** (a seat plus parking): take one hold per resource, confirm each with the same payment reference plus a suffix, and release the others if one fails. Atomic multi-resource holds are deliberately not in this version because they need a second lock order.
 - **Serverless**: every call is one SQL function, so there is nothing to keep alive. Run `sweep` from a scheduled function or `pg_cron`.
 - **Connection poolers** in transaction mode are fine: no function relies on session state.
+
+## Python
+
+The same library, the same SQL, from Python:
+
+```sh
+pip install neveroversell
+```
+
+```python
+from datetime import timedelta
+from neveroversell import Inventory
+
+inv = Inventory("postgres://user:pass@host/db", hold_ttl=timedelta(minutes=15), payment_window=timedelta(minutes=30))
+inv.migrate()
+inv.upsert_resource("flight_AI202_2026-10-01", 180)
+
+held = inv.hold("flight_AI202_2026-10-01", 2, account_id=user.id, idempotency_key=basket.id)
+inv.begin_payment(held.hold.id)
+result = inv.confirm(held.hold.id, payment.id)   # result.status is one of the outcomes in the table above
+```
+
+Both clients apply the same migration files and record them in the same table, so a TypeScript service and a Python worker can share one database without ceremony. Details in [python/README.md](python/README.md).
 
 ## Using the SQL without the client
 

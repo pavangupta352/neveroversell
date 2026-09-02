@@ -30,6 +30,31 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - run: npm test
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.13"]
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: nos
+          POSTGRES_PASSWORD: nos
+          POSTGRES_DB: nos
+        ports: ["54329:5432"]
+        options: >-
+          --health-cmd "pg_isready -U nos -d nos" --health-interval 2s --health-timeout 3s --health-retries 30
+    env:
+      DATABASE_URL: postgres://nos:nos@127.0.0.1:54329/nos
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e "python[dev]"
+      - run: pytest python/tests -q
   gitleaks:
     runs-on: ubuntu-latest
     steps:
